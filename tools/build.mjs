@@ -3,6 +3,10 @@
  * Orbo Flow static site builder.
  * Renders every page to HTML at the repository root, plus sitemap.xml and robots.txt.
  * Zero dependencies — run with `node tools/build.mjs`.
+ *
+ * Output is fully portable: every internal path is rewritten relative to the
+ * page that contains it, so the site works opened straight from disk, served
+ * from a subfolder, or hosted at a domain root.
  */
 import { mkdir, writeFile, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -36,6 +40,34 @@ const allPages = [
   about, careers, partners, newsroom, contact,
   bookDemo, privacy, terms, security, sitemapPage, notFound,
 ];
+
+/**
+ * How many directories deep a page sits, which is how many "../" steps an
+ * internal path needs to climb back to the site root.
+ *   '/' and '/404.html' -> 0     '/solutions/' -> 1     '/solutions/ai-agents/' -> 2
+ */
+function depthOf(urlPath) {
+  if (urlPath === '/' || urlPath.endsWith('.html')) return 0;
+  return urlPath.split('/').filter(Boolean).length;
+}
+
+/**
+ * Rewrite root-absolute href/src values into paths relative to `urlPath`, and
+ * point directory URLs at their index.html so file:// browsing resolves them.
+ * Absolute URLs, mailto:, tel:, #fragments and data: URIs are left untouched.
+ */
+function toRelativePaths(html, urlPath) {
+  const up = '../'.repeat(depthOf(urlPath));
+
+  return html.replace(/(href|src)="\/([^"]*)"/g, (_match, attr, rest) => {
+    const [pathPart, hash] = rest.split('#');
+    let target = pathPart;
+    /* '/' or '/foo/' address a directory index. */
+    if (target === '' || target.endsWith('/')) target += 'index.html';
+    const prefix = up || './';
+    return `${attr}="${prefix}${target}${hash ? `#${hash}` : ''}"`;
+  });
+}
 
 function outPathFor(urlPath) {
   if (urlPath === '/') return join(root, 'index.html');
@@ -83,7 +115,7 @@ async function main() {
   let count = 0;
   for (const p of allPages) {
     const body = noCta.has(p.path) ? p.body : `${p.body}\n${ctaBand()}`;
-    const html = page({ ...p, body });
+    const html = toRelativePaths(page({ ...p, body }), p.path);
     await write(outPathFor(p.path), html);
     count++;
   }

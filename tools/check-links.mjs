@@ -39,21 +39,19 @@ for (const file of files) {
   if (html.includes('[object Object]')) issues.push(`${rel}: contains "[object Object]"`);
   if (/\$\{/.test(html)) issues.push(`${rel}: unrendered template literal`);
 
-  /* link resolution */
-  for (const m of html.matchAll(/href="([^"]+)"/g)) {
-    const href = m[1];
-    if (/^(https?:|mailto:|tel:|#|data:)/.test(href)) continue;
+  /* Link resolution. Paths are relative, so resolve them from this file's
+     own directory — exactly as a browser does, including over file://. */
+  const here = dirname(file);
+  for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const url = m[1];
+    if (/^(https?:|mailto:|tel:|#|data:)/.test(url)) continue;
+    if (url.startsWith('/')) { broken.push(`${rel} -> ${url} (root-absolute, not portable)`); continue; }
     hrefCount++;
-    const clean = href.split('#')[0];
+    const clean = url.split('#')[0];
     if (!clean) continue;
-    const target = clean.endsWith('/') ? join(root, clean, 'index.html') : join(root, clean);
-    if (!(await exists(target))) broken.push(`${rel} -> ${href}`);
-  }
-  for (const m of html.matchAll(/src="([^"]+)"/g)) {
-    const src = m[1];
-    if (/^(https?:|data:)/.test(src)) continue;
-    hrefCount++;
-    if (!(await exists(join(root, src)))) broken.push(`${rel} -> src ${src}`);
+    const target = clean.endsWith('/') ? resolve(here, clean, 'index.html') : resolve(here, clean);
+    if (!target.startsWith(root)) { broken.push(`${rel} -> ${url} (escapes site root)`); continue; }
+    if (!(await exists(target))) broken.push(`${rel} -> ${url}`);
   }
 }
 

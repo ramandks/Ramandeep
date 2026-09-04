@@ -3,21 +3,34 @@
 Marketing website for **Orbo Flow**: *AI Agents. Intelligent Automation. Built to Scale. Anywhere.*
 
 Built from the supplied homepage design and extended into a complete **52-page** site.
-Static HTML/CSS/JS with **no runtime dependencies** — deployable to GitHub Pages, Netlify,
-Cloudflare Pages, S3 or any static host by serving the repository root.
+Plain HTML, CSS and JavaScript with **no runtime dependencies and no build step at deploy
+time**.
+
+**Every path is relative**, so the site works three ways with no changes:
+
+- **Open it from disk** — double-click `index.html` and browse the whole site offline
+- **Any static host** — GitHub Pages, Netlify, Cloudflare Pages, S3, cPanel, FTP
+- **A subfolder** — `example.com/site/` works exactly like a domain root
+
+The only external request on any page is the Google Fonts stylesheet, and the site
+renders correctly without it.
 
 ---
 
 ## Quick start
 
+To just **view the site**, open `index.html` in a browser. Nothing to install.
+
+To work on it:
+
 ```bash
-npm run build     # generate all HTML into the repo root
+npm run build     # regenerate all HTML into the repo root
 npm run serve     # preview at http://localhost:4173
 npm run check     # build + verify every internal link and page
-npm test          # the above, plus browser UI tests (needs `npm install`)
+npm test          # the above, plus browser tests (needs `npm install`)
 ```
 
-Only `npm run build`, `serve` and `check` need Node — nothing is installed for them.
+`build`, `serve` and `check` need only Node — nothing is installed for them.
 `npm test` additionally runs Playwright, the sole devDependency.
 
 ---
@@ -39,6 +52,7 @@ tools/
   build.mjs           renders every page + sitemap.xml, robots.txt, favicon
   check-links.mjs     verifies all internal links and per-page HTML structure
   test-ui.mjs         browser tests for nav, accordions, forms, responsiveness
+  test-offline.mjs    browses the output over file:// to prove it is portable
   server.mjs          static preview server
 assets/
   css/styles.css      the design system — tokens, components, responsive rules
@@ -47,7 +61,12 @@ assets/
 
 `tools/build.mjs` clears and regenerates the `solutions/`, `industries/`, `resources/`,
 `company/`, `legal/`, `ai-tools/`, `book-a-demo/` and `sitemap/` directories on each run,
-so renamed pages never linger.
+so renamed pages never linger. It also rewrites every internal path relative to the page
+that contains it, which is what makes the output portable.
+
+Prefer to hand-edit the HTML instead? That works too — the files are self-contained. Just
+be aware that `npm run build` would overwrite those edits, so if you go that route you can
+delete `content/`, `tools/` and `package.json` and keep only the HTML, CSS, JS and SVG.
 
 ---
 
@@ -111,6 +130,16 @@ font stylesheet, and the site renders correctly without it.
 
 ## Deploying
 
-The repository root *is* the site. `.nojekyll` is committed so GitHub Pages serves it
-as-is. Point any static host at the root and it will work — no build step is required at
-deploy time because the HTML is committed.
+The repository root *is* the site — the HTML is committed, so there is no deploy-time
+build.
+
+- **Static host / CDN** — point it at the repository root. `.nojekyll` is committed so
+  GitHub Pages serves the files as-is.
+- **cPanel, FTP, shared hosting** — upload everything except `content/`, `tools/`,
+  `node_modules/`, `package.json` and `package-lock.json`. Those are only for regenerating
+  the HTML; the site does not need them.
+- **Offline or handoff** — zip the same set of files. Opening `index.html` from the
+  extracted folder browses the entire site.
+
+Clean URLs like `example.com/solutions/ai-agents/` still work on any host that serves
+directory indexes, which is the default nearly everywhere.

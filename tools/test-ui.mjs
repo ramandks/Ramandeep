@@ -34,7 +34,8 @@ ok('mega menu opens on hover', await page.isVisible('#nav-industries .mega-item'
 await page.click('button[aria-controls="nav-industries"]'); await page.waitForTimeout(300);
 ok('menu stays open when clicked after hover', await page.isVisible('#nav-industries .mega-item'));
 const megaLink = await page.getAttribute('#nav-industries .mega-item','href');
-ok(`mega item links out (${megaLink})`, !!megaLink && megaLink.startsWith('/industries/'));
+ok(`mega item links out relatively (${megaLink})`,
+   !!megaLink && !megaLink.startsWith('/') && megaLink.endsWith('/industries/real-estate/index.html'));
 
 // --- sticky header ---
 await page.evaluate(()=>window.scrollTo(0,400)); await page.waitForTimeout(250);
