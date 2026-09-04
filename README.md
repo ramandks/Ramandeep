@@ -124,9 +124,15 @@ font stylesheet, and the site renders correctly without it.
 3. **Swap in photography** if you want it. `content/art.mjs` holds the illustrated scenes
    used for *Who We Help* and *Built in New Zealand*; replace those SVGs with `<img>` tags
    and the surrounding layout will hold.
-4. **Replace placeholder details** — the phone number, social links and partner logos are
+4. **Have the legal pages reviewed.** Privacy, Terms and Security are drafted for an
+   Australia- and New-Zealand-based business and reference the NZ Privacy Act 2020, the
+   Australian Privacy Act 1988, the Consumer Guarantees Act 1993 and the Australian
+   Consumer Law. They are a starting point written to be plausible, **not legal advice** —
+   have a qualified adviser confirm the governing-law clause, the contracting entities and
+   the data-residency claims before you publish them.
+5. **Replace placeholder details** — the phone number, social links and partner logos are
    representative and should be checked against the real brand assets.
-5. **Add analytics** if required; none is included.
+6. **Add analytics** if required; none is included.
 
 ## Deploying
 
