@@ -178,7 +178,7 @@ export const sceneTeam = `
   </g>
 </svg>`;
 
-/* ---------- Scene: working from New Zealand ---------- */
+/* ---------- Scene: working from Australia & New Zealand ---------- */
 export const sceneNZ = `
 <svg viewBox="0 0 720 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A person working on a laptop at a desk with plants">
   <defs>

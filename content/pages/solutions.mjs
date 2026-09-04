@@ -24,7 +24,7 @@ const detail = {
     faqs: [
       { q: 'How is this different from a chatbot?', a: 'A chatbot follows a decision tree you drew in advance. An agent reasons over your data, decides which tool to call, performs the action in your systems, and knows when to escalate. Practically: a chatbot tells a customer how to reschedule; an agent reschedules it.' },
       { q: 'What stops the agent making things up?', a: 'Three layers. Answers are retrieved from your approved sources rather than generated from memory; responses are checked against confidence and topic rules before sending; and anything outside scope escalates to a human instead of guessing. Every response keeps a trace of the sources used.' },
-      { q: 'Can it work in more than one language?', a: 'Yes. Agents run in over 30 languages, including automatic detection and per-market tone. New Zealand teams commonly run English plus te reo Māori greetings, Mandarin and Hindi.' },
+      { q: 'Can it work in more than one language?', a: 'Yes. Agents run in over 30 languages, including automatic detection and per-market tone. Australian and New Zealand teams commonly run English plus te reo Māori greetings, Mandarin and Hindi.' },
       { q: 'How long does a first agent take to deploy?', a: 'A scoped, production-ready agent on one channel typically goes live in 3–6 weeks. Simpler deflection agents ship faster; regulated environments with review gates take longer by design.' },
     ],
   },

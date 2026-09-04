@@ -165,7 +165,7 @@ const partnersSection = `
             <span class="pin" style="left:50%;top:25%" data-label="Europe">${icon('pin')}</span>
             <span class="pin" style="left:60%;top:46%" data-label="Middle East">${icon('pin')}</span>
             <span class="pin" style="left:73%;top:36%" data-label="Asia">${icon('pin')}</span>
-            <span class="pin" style="left:91%;top:83%" data-label="New Zealand">${icon('pin')}</span>
+            <span class="pin" style="left:87%;top:80%" data-label="Australia &amp; NZ">${icon('pin')}</span>
           </div>
         </div>
         <div class="btn-row" style="margin-top:18px">
@@ -187,8 +187,8 @@ const nzSection = `
   <div class="wrap wrap-wide">
     <div class="nz-band reveal">
       <div class="nz-body">
-        <h2 class="h2"><span class="grad-text">Built in New Zealand.</span> Working Globally.</h2>
-        <p class="lead">Proudly headquartered in New Zealand, delivering AI solutions to businesses around the world.</p>
+        <h2 class="h2"><span class="grad-text">Built in Australia &amp; New Zealand.</span> Working Globally.</h2>
+        <p class="lead">Proudly headquartered in Australia and New Zealand, delivering AI solutions to businesses around the world.</p>
         <ul class="check-list green">
           <li>${icon('checkTick')}<span>Global team &amp; local support</span></li>
           <li>${icon('checkTick')}<span>Enterprise-grade security</span></li>
@@ -241,6 +241,6 @@ export const home = {
   path: '/',
   title: 'AI Agents & Intelligent Automation',
   description:
-    'Orbo Flow builds AI Agents and Automations that work 24/7, across any industry, anywhere in the world. Built in New Zealand, working globally.',
+    'Orbo Flow builds AI Agents and Automations that work 24/7, across any industry, anywhere in the world. Built in Australia and New Zealand, working globally.',
   body: [hero, industriesSection, solutionsSection, journeySection, whoWeHelp, toolsSection, partnersSection, nzSection, proof].join('\n'),
 };

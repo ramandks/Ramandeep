@@ -6,7 +6,7 @@ export const brand = {
   blurb: 'AI Agents, Intelligent Automation. Built to Scale. Anywhere.',
   email: 'hello@orboflow.com',
   phone: '0800 ORBO FLOW',
-  hq: 'New Zealand',
+  hq: 'Australia & New Zealand',
   url: 'https://www.orboflow.com',
 };
 

@@ -6,11 +6,11 @@ import { sceneTeam, sceneNZ, worldMap } from '../art.mjs';
 export const about = {
   path: '/company/about/',
   title: 'About Us',
-  description: 'Orbo Flow is a New Zealand-headquartered AI company building agents and automation for businesses in 30+ countries.',
+  description: 'Orbo Flow is an Australia- and New Zealand-headquartered AI company building agents and automation for businesses in 30+ countries.',
   body: `
 ${pageHero({
     eyebrow: 'About us',
-    title: 'Built in New Zealand. <span class="grad-text">Working Globally.</span>',
+    title: 'Built in Australia &amp; New Zealand. <span class="grad-text">Working Globally.</span>',
     lead: 'We build AI that survives contact with a real business — messy data, awkward exceptions, people who are already busy. That constraint shapes everything about how we work.',
     crumbs: [{ label: 'Company' }, { label: 'About Us' }],
   })}
@@ -23,7 +23,7 @@ ${pageHero({
         <h2 class="h2">We started because pilots kept dying</h2>
         <p class="lead">Orbo Flow was founded by a team who had spent years watching promising AI projects stall between demo and production. The models were rarely the problem. Integration, ownership, governance and the unglamorous work of exception handling were.</p>
         <p>So we built the company around the other 90% — the parts that make an AI system something a business can rely on at 2am, not just something impressive in a boardroom. Today we run agents, automations and data platforms for organisations from ten-person startups to national enterprises, across ${industries.length} industries and more than 30 countries.</p>
-        <p>We are headquartered in New Zealand, with delivery people across Asia-Pacific, Europe and North America. Being small and far away made us disciplined about two things: shipping something real quickly, and writing down how it works so the client is never dependent on us.</p>
+        <p>We are headquartered in Australia and New Zealand, with delivery people across Asia-Pacific, Europe and North America. Being small and far away made us disciplined about two things: shipping something real quickly, and writing down how it works so the client is never dependent on us.</p>
       </div>
       <div class="frow-media">${sceneTeam}</div>
     </div>
@@ -83,7 +83,7 @@ ${pageHero({
 
 ${faqBlock([
   { q: 'How big is Orbo Flow?', a: 'We run deliberately lean — small senior delivery teams rather than large pyramids. That keeps the people who scoped your work on the build, and it keeps our pricing honest.' },
-  { q: 'Where are your people based?', a: 'Headquarters and leadership are in New Zealand. Delivery and support staff are distributed across Asia-Pacific, Europe and North America so clients get coverage in their own working hours.' },
+  { q: 'Where are your people based?', a: 'Headquarters and leadership are in Australia and New Zealand. Delivery and support staff are distributed across Asia-Pacific, Europe and North America so clients get coverage in their own working hours.' },
   { q: 'Do you resell software?', a: 'No. We build on the platforms that suit the workload and hold partner status with several cloud and model providers, which we disclose whenever it is relevant to a recommendation.' },
   { q: 'What industries do you refuse?', a: 'We decline work where the intended use is deceptive, discriminatory, or where the client will not accept human oversight on consequential decisions. That has cost us engagements and we would make the same call again.' },
 ], 'About Orbo Flow')}`,
@@ -131,7 +131,7 @@ ${pageHero({
     <div class="partners-panel reveal">
       <div class="partners-left">
         <h2 class="h2">Delivering in <span class="grad-text">30+ countries</span></h2>
-        <p class="lead">Local delivery support across five regions, coordinated from New Zealand.</p>
+        <p class="lead">Local delivery support across five regions, coordinated from Australia and New Zealand.</p>
         <div class="world">
           ${worldMap}
           <div class="pins" aria-hidden="true">
@@ -139,7 +139,7 @@ ${pageHero({
             <span class="pin" style="left:50%;top:25%" data-label="Europe">${icon('pin')}</span>
             <span class="pin" style="left:60%;top:46%" data-label="Middle East">${icon('pin')}</span>
             <span class="pin" style="left:73%;top:36%" data-label="Asia">${icon('pin')}</span>
-            <span class="pin" style="left:91%;top:83%" data-label="New Zealand">${icon('pin')}</span>
+            <span class="pin" style="left:87%;top:80%" data-label="Australia &amp; NZ">${icon('pin')}</span>
           </div>
         </div>
       </div>
@@ -157,16 +157,16 @@ ${pageHero({
 const roles = [
   { title: 'Senior AI Engineer', team: 'Delivery', loc: 'Auckland or remote (NZ/AU)', type: 'Full-time' },
   { title: 'Automation Engineer', team: 'Delivery', loc: 'Remote (APAC)', type: 'Full-time' },
-  { title: 'Solutions Architect', team: 'Pre-sales', loc: 'Auckland', type: 'Full-time' },
+  { title: 'Solutions Architect', team: 'Pre-sales', loc: 'Sydney', type: 'Full-time' },
   { title: 'Data Engineer', team: 'Platform', loc: 'Remote (NZ/AU)', type: 'Full-time' },
-  { title: 'Client Delivery Lead', team: 'Delivery', loc: 'Wellington or remote', type: 'Full-time' },
+  { title: 'Client Delivery Lead', team: 'Delivery', loc: 'Melbourne or Wellington', type: 'Full-time' },
   { title: 'Conversation Designer', team: 'Design', loc: 'Remote (global)', type: 'Contract' },
 ];
 
 export const careers = {
   path: '/company/careers/',
   title: 'Careers',
-  description: 'Join Orbo Flow. Remote-friendly AI engineering, delivery and design roles, headquartered in New Zealand.',
+  description: 'Join Orbo Flow. Remote-friendly AI engineering, delivery and design roles, headquartered in Australia and New Zealand.',
   body: `
 ${pageHero({
     eyebrow: 'Careers',
@@ -181,7 +181,7 @@ ${pageHero({
     ${secHead({ title: 'Why people join', lead: 'And, more importantly, why they stay.' })}
     ${cards([
       { icon: 'rocket', title: 'Real production work', desc: 'Not prototypes that get shelved. Everything you build goes live, gets monitored and gets used by someone whose job it changes.' },
-      { icon: 'globe', title: 'Remote-friendly, NZ-anchored', desc: 'Distributed across time zones with genuine flexibility. We optimise for overlap windows, not attendance.' },
+      { icon: 'globe', title: 'Remote-friendly, AU/NZ-anchored', desc: 'Distributed across time zones with genuine flexibility, anchored to Australian and New Zealand hours. We optimise for overlap windows, not attendance.' },
       { icon: 'book', title: 'Learning budget that gets used', desc: 'Conference, course and certification budget per person per year, plus dedicated time to use it.' },
       { icon: 'users', title: 'Small teams, real ownership', desc: 'You will name the trade-offs to the client yourself rather than relaying them through three layers.' },
       { icon: 'gauge', title: 'Sane delivery cadence', desc: 'Fixed scopes, fortnightly demos, no heroics culture. On-call is compensated and genuinely rare.' },
@@ -213,7 +213,7 @@ ${pageHero({
 
 ${faqBlock([
   { q: 'Do I need AI or ML research experience?', a: 'For most roles, no. We need strong software and data engineers who care about production reliability. Model research is a small part of what we do; making systems dependable is the bulk of it.' },
-  { q: 'Is remote genuinely remote?', a: 'Yes, within time zones that overlap our delivery hours — broadly NZ, Australia and Asia for delivery roles, with some fully global positions. We are explicit about the required overlap in each listing.' },
+  { q: 'Is remote genuinely remote?', a: 'Yes, within time zones that overlap our delivery hours — broadly Australia, New Zealand and Asia for delivery roles, with some fully global positions. We are explicit about the required overlap in each listing.' },
   { q: 'What is the interview process?', a: 'An intro call, a practical exercise based on real work (paid if it takes more than two hours), a technical conversation, and a chat with someone you would work alongside. Usually two to three weeks end to end.' },
 ], 'Working at Orbo Flow')}`,
 };
@@ -270,7 +270,7 @@ ${pageHero({
 export const contact = {
   path: '/company/contact/',
   title: 'Contact Us',
-  description: `Contact Orbo Flow — ${brand.email}, ${brand.phone}. Headquartered in New Zealand, working globally.`,
+  description: `Contact Orbo Flow — ${brand.email}, ${brand.phone}. Headquartered in Australia and New Zealand, working globally.`,
   body: `
 ${pageHero({
     eyebrow: 'Contact',
