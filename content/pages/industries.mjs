@@ -50,7 +50,7 @@ ${pageHero({
 
 <section class="section">
   <div class="wrap wrap-wide">
-    <div class="frow">
+    <div class="frow frow--media-lg">
       <div>
         <span class="eyebrow">The opportunity</span>
         <h2 class="h2">Where AI pays back first in ${esc(ind.title.toLowerCase())}</h2>

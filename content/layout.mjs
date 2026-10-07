@@ -19,6 +19,31 @@ export const logoMark = `<svg viewBox="0 0 40 40" aria-hidden="true">
 export const logo = (cls = 'logo') =>
   `<a class="${cls}" href="/" aria-label="${esc(brand.name)} home">${logoMark}<span>${esc(brand.name)}</span></a>`;
 
+/* ---------------- Announcement banner ----------------
+   Edit `announcement` to change the message. Bump `version` whenever the text
+   changes so that visitors who dismissed the previous one see the new one. */
+export const announcement = {
+  version: '2026-10-voice',
+  tagline: 'New',
+  text: 'Voice agents now answer after-hours calls in 30+ languages.',
+  cta: { label: 'See how it works', href: '/solutions/voice-ai/' },
+};
+
+export function announceBar() {
+  const a = announcement;
+  if (!a) return '';
+  return `<div class="announce" id="announce" data-announce-version="${esc(a.version)}" hidden>
+    <div class="wrap wrap-wide announce-inner">
+      ${a.tagline ? `<span class="tagline">${esc(a.tagline)}</span>` : ''}
+      <p>${esc(a.text)}</p>
+      ${a.cta ? `<a class="announce-cta" href="${a.cta.href}">${esc(a.cta.label)} ${icon('arrow')}</a>` : ''}
+    </div>
+    <button class="announce-close" type="button" aria-label="Dismiss announcement">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>`;
+}
+
 /* ---------------- Header ---------------- */
 function megaPanel(group) {
   const cols = group.items.length > 6 ? 'mega-grid' : 'mega-grid';
@@ -159,6 +184,7 @@ export function page({ title, description, path = '/', body, bodyClass = '' }) {
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
+${announceBar()}
 ${header(path)}
 <main id="main">
 ${body}

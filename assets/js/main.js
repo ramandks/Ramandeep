@@ -7,6 +7,28 @@
     else document.addEventListener('DOMContentLoaded', fn);
   };
 
+  /* ---------- Announcement banner ----------
+     Rendered hidden so a dismissed banner never flashes before JS runs; with
+     JS unavailable the banner simply stays hidden rather than flickering. */
+  function initAnnounce() {
+    var bar = document.getElementById('announce');
+    if (!bar) return;
+    var key = 'of-announce-dismissed';
+    var version = bar.getAttribute('data-announce-version') || '';
+
+    var dismissed = '';
+    try { dismissed = window.localStorage.getItem(key) || ''; } catch (e) { /* blocked storage */ }
+    if (dismissed === version) return;
+
+    bar.hidden = false;
+    var close = bar.querySelector('.announce-close');
+    if (!close) return;
+    close.addEventListener('click', function () {
+      bar.hidden = true;
+      try { window.localStorage.setItem(key, version); } catch (e) { /* blocked storage */ }
+    });
+  }
+
   /* ---------- Sticky header shadow ---------- */
   function initHeader() {
     var header = document.querySelector('.site-header');
@@ -238,6 +260,7 @@
   }
 
   onReady(function () {
+    initAnnounce();
     initHeader();
     initMegaMenus();
     initMobileNav();

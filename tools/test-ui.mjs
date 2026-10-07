@@ -37,6 +37,24 @@ const megaLink = await page.getAttribute('#nav-industries .mega-item','href');
 ok(`mega item links out relatively (${megaLink})`,
    !!megaLink && !megaLink.startsWith('/') && megaLink.endsWith('/industries/real-estate/index.html'));
 
+// --- announcement banner ---
+ok('banner shows above the header', await page.isVisible('#announce'));
+ok('banner sits before the header in the DOM', await page.evaluate(() => {
+  const bar = document.getElementById('announce');
+  const head = document.querySelector('.site-header');
+  return !!(bar && head) && (bar.compareDocumentPosition(head) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0;
+}));
+await page.click('.announce-close');
+await page.waitForTimeout(150);
+ok('banner hides when dismissed', !(await page.isVisible('#announce')));
+await page.reload({ waitUntil: 'load' });
+await page.waitForTimeout(250);
+ok('dismissal persists across a reload', !(await page.isVisible('#announce')));
+await page.evaluate(() => { try { localStorage.removeItem('of-announce-dismissed'); } catch (e) {} });
+await page.reload({ waitUntil: 'load' });
+await page.waitForTimeout(250);
+ok('banner returns once the stored dismissal is cleared', await page.isVisible('#announce'));
+
 // --- sticky header ---
 await page.evaluate(()=>window.scrollTo(0,400)); await page.waitForTimeout(250);
 ok('header gains stuck state on scroll', await page.evaluate(()=>document.querySelector('.site-header').classList.contains('is-stuck')));
